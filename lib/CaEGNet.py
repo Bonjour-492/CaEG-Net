@@ -145,43 +145,6 @@ class CaEGNet(nn.Module):
         return [p4, p3, p2, p1], weight1, pre_features1, pre_weight1,edge_out
         # return [p4, p3, p2, p1], weight1, pre_features1, pre_weight1, weight2, pre_features2, pre_weight2, edge_out
 
-    # def forward(self, img, args, p_fs, p_w1, epoch_num, i_batch, mode):  #EMCAD-Casual
-    #     # if grayscale input, convert to 3 channels
-    #     if img.size()[1] == 1:
-    #         img = self.conv(img)
-    #
-    #     if mode == 'train':
-    #         x1, x2, x3, x4, weight1, pre_features1, pre_weight1 = self.backbone(img, args, p_fs, p_w1,
-    #                                                                             epoch_num, i_batch, mode='train')
-    #     else:
-    #         x1, x2, x3, x4 = self.backbone(img, args, p_fs, p_w1, epoch_num, i_batch, mode='test')
-    #     # X1[2, 64, 56, 56] x2([2, 128, 28, 28]) x3([2, 320, 14, 14]) x4([2, 512, 7, 7])
-    #
-    #     dec_outs = self.decoder(x4, [x3, x2, x1])
-    #     # dec_outse([6, 512, 7, 7]) ([6, 320, 14, 14])([6, 128, 28, 28])([6, 64, 56, 56])
-    #
-    #     # prediction heads
-    #     p4 = self.out_head4(dec_outs[0])  # [2, 1, 7, 7]
-    #     p3 = self.out_head3(dec_outs[1])  # [2, 1, 14, 14]
-    #     p2 = self.out_head2(dec_outs[2])  # [2, 1, 28, 28]
-    #     p1 = self.out_head1(dec_outs[3])  # [2, 1, 56, 56]
-    #
-    #     p4 = F.interpolate(p4, scale_factor=32, mode='bilinear')  # [6, 9, 224, 224]
-    #     p3 = F.interpolate(p3, scale_factor=16, mode='bilinear')  # [6, 9, 224, 224]
-    #     p2 = F.interpolate(p2, scale_factor=8, mode='bilinear')  # [6, 9, 224, 224]
-    #     p1 = F.interpolate(p1, scale_factor=4, mode='bilinear')  # [6, 9, 224, 224]
-    #
-    #     # p4 = self.activate(p4)
-    #     # p3 = self.activate(p3)
-    #     # p2 = self.activate(p2)
-    #     p1 = self.activate(p1)
-    #
-    #     if mode == 'test':
-    #         return [p4, p3, p2, p1]
-    #
-    #     # return [p4, p3, p2, p1]
-    #     return [p4, p3, p2, p1], weight1, pre_features1, pre_weight1
-    #     # return [p4, p3, p2, p1], weight1, pre_features1, pre_weight1, weight2, pre_features2, pre_weight2, edge_out
 
 
 if __name__ == '__main__':
